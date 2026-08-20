@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentiAI — Sentiment Analysis Engine</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-glow"></div>
+
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-icon">✦</span>
+            <span>Senti<strong>AI</strong></span>
+        </div>
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>API Online</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Classify Sentiment with <span class="gradient-text">Precision</span></h1>
+            <p>Real-time machine learning inference using TF-IDF vectorization and Logistic Regression.</p>
+        </section>
+
+        <!-- Main Analyzer Card -->
+        <div class="card glassmorphism analyzer-card">
+            <div class="input-header">
+                <label for="text-input">Input Text</label>
+                <span class="hint">Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to analyze</span>
+            </div>
+
+            <textarea id="text-input" placeholder="Type or paste customer feedback, tweet, or review here..." rows="4"></textarea>
+
+            <div class="example-chips">
+                <span class="chip-label">Examples:</span>
+                <button type="button" class="chip" data-text="I absolutely love this airline! Best flight experience ever.">Positive Flight</button>
+                <button type="button" class="chip" data-text="The flight was delayed by 3 hours, terrible customer support.">Delayed Baggage</button>
+                <button type="button" class="chip" data-text="The flight was scheduled for 10 AM and departed at 10 AM.">Standard Route</button>
+            </div>
+
+            <div class="action-row">
+                <button id="analyze-btn" class="btn btn-primary">
+                    <span class="btn-text">Analyze Sentiment</span>
+                    <span class="spinner hidden"></span>
+                </button>
+                <button id="clear-btn" class="btn btn-ghost">Clear</button>
+            </div>
+
+            <div id="error-box" class="error-box hidden"></div>
+
+            <!-- Prediction Result Display -->
+            <div id="result-container" class="result-container hidden">
+                <div class="result-header">
+                    <div class="sentiment-indicator" id="sentiment-badge">
+                        <span id="sentiment-icon">●</span>
+                        <span id="sentiment-label">Neutral</span>
+                    </div>
+                </div>
+
+                <div class="probabilities">
+                    <div class="prob-row">
+                        <div class="prob-info">
+                            <span>Positive</span>
+                            <strong id="pos-val">0.00%</strong>
+                        </div>
+                        <div class="progress-bar"><div id="pos-bar" class="fill positive" style="width: 0%;"></div></div>
+                    </div>
+                    <div class="prob-row">
+                        <div class="prob-info">
+                            <span>Neutral</span>
+                            <strong id="neu-val">0.00%</strong>
+                        </div>
+                        <div class="progress-bar"><div id="neu-bar" class="fill neutral" style="width: 0%;"></div></div>
+                    </div>
+                    <div class="prob-row">
+                        <div class="prob-info">
+                            <span>Negative</span>
+                            <strong id="neg-val">0.00%</strong>
+                        </div>
+                        <div class="progress-bar"><div id="neg-bar" class="fill negative" style="width: 0%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History & Technical Details Grid -->
+        <div class="grid-section">
+            <div class="card glassmorphism">
+                <div class="card-header">
+                    <h3>Prediction History</h3>
+                    <button id="clear-history-btn" class="btn-link">Clear</button>
+                </div>
+                <div id="history-list" class="history-list">
+                    <div class="empty-state">No predictions recorded yet.</div>
+                </div>
+            </div>
+
+            <div class="card glassmorphism">
+                <h3>Architecture Overview</h3>
+                <div class="info-steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <div>
+                            <strong>Text Cleansing</strong>
+                            <p>Strips URLs, user mentions, punctuation, and converts input to lowercase tokens.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <div>
+                            <strong>TF-IDF Vectorization</strong>
+                            <p>Encodes cleaned text into sparse n-gram term-frequency matrices.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <div>
+                            <strong>Probability Scoring</strong>
+                            <p>Calculates calibrated multi-class distribution via Logistic Regression.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Sentiment Analysis System — Flask & Scikit-Learn Powered.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
